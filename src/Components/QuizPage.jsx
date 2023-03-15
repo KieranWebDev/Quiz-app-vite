@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 
 export default function QuizPage({ quizData }) {
   const [usersAnswers, setusersAnswers] = useState({});
-
-  const correctAnswers = quizData.map((item) => item.correct_answer);
-  console.log(correctAnswers);
+  const [score, setScore] = useState(0);
 
   function defaultform() {
     const defaultForm = {};
@@ -30,8 +28,18 @@ export default function QuizPage({ quizData }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    const correctAnswers = quizData.map((item) => item.correct_answer);
+    console.log(correctAnswers);
     console.log(usersAnswers);
-    // setScore();
+
+    const finalScore = correctAnswers
+      .map((item, index) =>
+        item === usersAnswers[`question${index + 1}`] ? 1 : 0
+      )
+      .reduce((accum, current) => accum + current);
+    setScore(finalScore);
+    console.log(score);
+    console.log(usersAnswers[`question${0 + 1}`]);
   }
 
   function convertToQuotations(string) {
@@ -87,9 +95,12 @@ export default function QuizPage({ quizData }) {
   });
 
   return (
-    <form onSubmit={handleSubmit}>
-      {questions}
-      <button>Check Answers</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        {questions}
+        <button>Check Answers</button>
+      </form>
+      <h2>{score}</h2>
+    </>
   );
 }
