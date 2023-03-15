@@ -8,12 +8,11 @@ import QuizPage from './Components/QuizPage';
 
 function App() {
   const [startQuiz, setStartQuiz] = useState(false);
-  const [quizData, setQuizData] = useState({});
+  const [quizData, setQuizData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    // request to server to get questions
     async function getQuestions() {
       try {
         setLoading(true);
@@ -26,20 +25,39 @@ function App() {
         }
 
         const data = await response.json();
-        console.log(data);
-        setQuizData(data);
+        setQuizData(() => organizeQuestions(data.results));
+        console.log(quizData);
         setLoading(false);
       } catch (err) {
         console.log(err);
       }
     }
     getQuestions();
-  }, [startQuiz]);
+  }, []);
+
+  function organizeQuestions(questions) {
+    const newQuizData = questions.map((question) => {
+      const allOptions = [
+        ...question.incorrect_answers,
+        question.correct_answer,
+      ];
+      const allOptionsShuffled = allOptions.sort(() => Math.random() - 0.5);
+      return {
+        ...question,
+        allOptionsShuffled: allOptionsShuffled,
+      };
+    });
+    return newQuizData;
+  }
 
   return (
     <div className="app">
       {!startQuiz && (
-        <StartPage setStartQuiz={setStartQuiz} startQuiz={startQuiz} />
+        <StartPage
+          setStartQuiz={setStartQuiz}
+          startQuiz={startQuiz}
+          organizeQuestions={organizeQuestions}
+        />
       )}
       {loading && <h1>Loading...</h1>}
       {error && <h1>Error</h1>}
