@@ -114,7 +114,7 @@ export default function QuizPage({ quizData }) {
       </form>
       {score && (
         <h2>
-          {score} out of {quizData.length}
+          {score} out of {quizData.length} ({(score / quizData.length) * 100}%)
         </h2>
       )}
     </>
