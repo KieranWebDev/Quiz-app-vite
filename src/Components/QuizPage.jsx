@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 
+import './QuizPage.css';
+
 export default function QuizPage({ quizData }) {
-  const [usersAnswers, setusersAnswers] = useState({});
+  const [usersAnswers, setUsersAnswers] = useState({});
   const [score, setScore] = useState('');
+  const [submissionStyles, setSubmissionStyles] = useState(false);
 
   function handleChange(event) {
+    const correctAnswers = quizData.map((item) => item.correct_answer);
+
     const { name, value, checked } = event.target;
-    setusersAnswers((prevValue) => {
+    setUsersAnswers((prevValue) => {
       return {
         ...prevValue,
         [name]: value,
@@ -17,9 +22,9 @@ export default function QuizPage({ quizData }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    // calculating finalScore
     const correctAnswers = quizData.map((item) => item.correct_answer);
-    console.log(correctAnswers);
-    console.log(usersAnswers);
 
     const finalScore = correctAnswers
       .map((item, index) =>
@@ -27,8 +32,7 @@ export default function QuizPage({ quizData }) {
       )
       .reduce((accum, current) => accum + current);
     setScore(finalScore);
-    console.log(score);
-    console.log(usersAnswers[`question${0 + 1}`]);
+    setSubmissionStyles(true);
   }
 
   function convertToQuotations(string) {
@@ -38,8 +42,16 @@ export default function QuizPage({ quizData }) {
   }
 
   const questions = quizData.map((item, index) => {
-    // console.log(item.allOptionsShuffled);
+    console.log(item);
     const option = item.allOptionsShuffled;
+    const isCorrect =
+      item.correct_answer === usersAnswers[`question${index + 1}`];
+
+    function styles(option) {
+      if (submissionStyles && item.correct_answer === option) {
+        return 'correct';
+      }
+    }
 
     return (
       <div key={item.question}>
@@ -52,7 +64,9 @@ export default function QuizPage({ quizData }) {
           value={option[0]}
           onChange={handleChange}
         />
-        <label htmlFor={option[0]}>{convertToQuotations(option[0])}</label>
+        <label htmlFor={option[0]} className={styles(option[0])}>
+          {convertToQuotations(option[0])}
+        </label>
 
         <input
           type="radio"
@@ -61,7 +75,9 @@ export default function QuizPage({ quizData }) {
           value={option[1]}
           onChange={handleChange}
         />
-        <label htmlFor={option[1]}>{convertToQuotations(option[1])}</label>
+        <label htmlFor={option[1]} className={styles(option[1])}>
+          {convertToQuotations(option[1])}
+        </label>
 
         <input
           type="radio"
@@ -70,7 +86,9 @@ export default function QuizPage({ quizData }) {
           value={option[2]}
           onChange={handleChange}
         />
-        <label htmlFor={option[2]}>{convertToQuotations(option[2])}</label>
+        <label htmlFor={option[2]} className={styles(option[2])}>
+          {convertToQuotations(option[2])}
+        </label>
 
         <input
           type="radio"
@@ -79,7 +97,11 @@ export default function QuizPage({ quizData }) {
           value={option[3]}
           onChange={handleChange}
         />
-        <label htmlFor={option[3]}>{convertToQuotations(option[3])}</label>
+        <label htmlFor={option[3]} className={styles(option[3])}>
+          {convertToQuotations(option[3])}
+        </label>
+        {submissionStyles && isCorrect && <span>✅</span>}
+        {submissionStyles && !isCorrect && <span>❌</span>}
       </div>
     );
   });
