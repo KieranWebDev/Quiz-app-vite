@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 
 import './QuizPage.css';
 
-export default function QuizPage({ quizData }) {
+export default function QuizPage({ quizData, setStartQuiz }) {
   const [usersAnswers, setUsersAnswers] = useState({});
   const [score, setScore] = useState('');
   const [submissionStyles, setSubmissionStyles] = useState(false);
 
   function handleChange(event) {
-    const correctAnswers = quizData.map((item) => item.correct_answer);
-
+    console.log(event.target);
     const { name, value, checked } = event.target;
     setUsersAnswers((prevValue) => {
       return {
@@ -41,8 +40,15 @@ export default function QuizPage({ quizData }) {
     );
   }
 
+  function playAgain() {
+    setScore('');
+    setSubmissionStyles(false);
+    setUsersAnswers({});
+    setStartQuiz(false);
+  }
+
   const questions = quizData.map((item, index) => {
-    console.log(item);
+    // console.log(item);
     const option = item.allOptionsShuffled;
     const isCorrect =
       item.correct_answer === usersAnswers[`question${index + 1}`];
@@ -113,9 +119,13 @@ export default function QuizPage({ quizData }) {
         <button>Check Answers</button>
       </form>
       {score && (
-        <h2>
-          {score} out of {quizData.length} ({(score / quizData.length) * 100}%)
-        </h2>
+        <div>
+          <h2>
+            {score} out of {quizData.length} ({(score / quizData.length) * 100}
+            %)
+          </h2>
+          <button onClick={playAgain}>Play again!</button>
+        </div>
       )}
     </>
   );

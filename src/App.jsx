@@ -61,7 +61,9 @@ function App() {
       )}
       {loading && <h1>Loading...</h1>}
       {error && <h1>Error</h1>}
-      {startQuiz && <QuizPage quizData={quizData} />}
+      {startQuiz && (
+        <QuizPage quizData={quizData} setStartQuiz={setStartQuiz} />
+      )}
     </div>
   );
 }
