@@ -11,6 +11,11 @@ function App() {
   const [quizData, setQuizData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [quizCriteria, setQuizCriteria] = useState({
+    numOfQuestions: 5,
+    category: '',
+    difficulty: '',
+  });
 
   useEffect(() => {
     async function getQuestions() {
@@ -57,6 +62,8 @@ function App() {
           setStartQuiz={setStartQuiz}
           startQuiz={startQuiz}
           organizeQuestions={organizeQuestions}
+          quizCriteria={quizCriteria}
+          setQuizCriteria={setQuizCriteria}
         />
       )}
       {loading && <h1>Loading...</h1>}
