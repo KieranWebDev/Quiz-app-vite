@@ -6,6 +6,8 @@ export default function StartPage({
   organizeQuestions,
   quizCriteria,
   setQuizCriteria,
+  setApiString,
+  apiString,
 }) {
   function handleChange(event) {
     const { name, value } = event.target;
@@ -23,10 +25,14 @@ export default function StartPage({
     console.log(quizCriteria);
     let { category, difficulty, numOfQuestions } = quizCriteria;
 
-    numOfQuestions = numOfQuestions === '' ? '' : `amount = ${numOfQuestions}`;
+    numOfQuestions = numOfQuestions === '' ? '' : `amount=${numOfQuestions}`;
+    category = category === '' ? '' : `&category=${category}`;
+    difficulty = difficulty === '' ? '' : `&difficulty=${difficulty}`;
 
-    console.log(numOfQuestions);
-    // category === ''? '' :
+    const newApiString = `${numOfQuestions}${category}${difficulty}&type=multiple`;
+    setApiString(newApiString);
+    setStartQuiz(true);
+    console.log(newApiString);
   }
 
   return (
@@ -47,7 +53,6 @@ export default function StartPage({
         />
         <label htmlFor="category">Category</label>
         <select
-          required
           name="category"
           id="category"
           value={quizCriteria.category}
@@ -65,7 +70,6 @@ export default function StartPage({
         </select>
         <label htmlFor="difficulty">Difficulty</label>
         <select
-          required
           name="difficulty"
           id="difficulty"
           value={quizCriteria.difficulty}
@@ -78,10 +82,10 @@ export default function StartPage({
         </select>
 
         <div>
-          <button>setCriteria</button>
+          <button>Start Quiz</button>
         </div>
       </form>
-      <button onClick={() => setStartQuiz(true)}>Start Quiz</button>
+      {/* <button onClick={() => setStartQuiz(true)}>Start Quiz</button> */}
     </div>
   );
 }

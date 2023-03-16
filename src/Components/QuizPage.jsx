@@ -7,6 +7,7 @@ export default function QuizPage({ quizData, setStartQuiz }) {
   const [score, setScore] = useState('');
   const [submissionStyles, setSubmissionStyles] = useState(false);
 
+  console.log(quizData);
   function handleChange(event) {
     console.log(event.target);
     const { name, value, checked } = event.target;
@@ -114,6 +115,8 @@ export default function QuizPage({ quizData, setStartQuiz }) {
 
   return (
     <>
+      <h1>{quizData[0].category}</h1>
+      <h2>{quizData.length} Questions</h2>
       <form onSubmit={handleSubmit}>
         {questions}
         <button>Check Answers</button>

@@ -16,13 +16,14 @@ function App() {
     category: '',
     difficulty: '',
   });
+  const [apiString, setApiString] = useState('amount=5&type=multiple');
 
   useEffect(() => {
     async function getQuestions() {
       try {
         setLoading(true);
         const response = await fetch(
-          `https://opentdb.com/api.php?amount=5&type=multiple`
+          `https://opentdb.com/api.php?${apiString}`
         );
         if (!response.ok) {
           setError(true);
@@ -38,8 +39,8 @@ function App() {
       }
     }
     getQuestions();
-  }, []);
-
+  }, [apiString]);
+  console.log(apiString);
   function organizeQuestions(questions) {
     const newQuizData = questions.map((question) => {
       const allOptions = [
@@ -64,6 +65,8 @@ function App() {
           organizeQuestions={organizeQuestions}
           quizCriteria={quizCriteria}
           setQuizCriteria={setQuizCriteria}
+          setApiString={setApiString}
+          apiString={apiString}
         />
       )}
       {loading && <h1>Loading...</h1>}
