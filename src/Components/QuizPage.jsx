@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { decode } from 'he';
+import Confetti from 'react-confetti';
 
 import './QuizPage.css';
 
@@ -35,10 +37,11 @@ export default function QuizPage({ quizData, setStartQuiz }) {
     setSubmissionStyles(true);
   }
 
-  function convertToQuotations(string) {
-    return decodeURIComponent(
-      string.replace(/&quot;/g, '"').replace(/&#039;/g, "'")
-    );
+  function convertToReadableString(string) {
+    // return decodeURIComponent(
+    //   string.replace(/&quot;/g, '"').replace(/&#039;/g, "'")
+    // );
+    return decode(string);
   }
 
   function playAgain() {
@@ -62,7 +65,7 @@ export default function QuizPage({ quizData, setStartQuiz }) {
 
     return (
       <div key={item.question}>
-        <h1>{convertToQuotations(item.question)}</h1>
+        <h1>{convertToReadableString(item.question)}</h1>
         <input
           required
           type="radio"
@@ -72,7 +75,7 @@ export default function QuizPage({ quizData, setStartQuiz }) {
           onChange={handleChange}
         />
         <label htmlFor={option[0]} className={styles(option[0])}>
-          {convertToQuotations(option[0])}
+          {convertToReadableString(option[0])}
         </label>
 
         <input
@@ -83,7 +86,7 @@ export default function QuizPage({ quizData, setStartQuiz }) {
           onChange={handleChange}
         />
         <label htmlFor={option[1]} className={styles(option[1])}>
-          {convertToQuotations(option[1])}
+          {convertToReadableString(option[1])}
         </label>
 
         <input
@@ -94,7 +97,7 @@ export default function QuizPage({ quizData, setStartQuiz }) {
           onChange={handleChange}
         />
         <label htmlFor={option[2]} className={styles(option[2])}>
-          {convertToQuotations(option[2])}
+          {convertToReadableString(option[2])}
         </label>
 
         <input
@@ -105,7 +108,7 @@ export default function QuizPage({ quizData, setStartQuiz }) {
           onChange={handleChange}
         />
         <label htmlFor={option[3]} className={styles(option[3])}>
-          {convertToQuotations(option[3])}
+          {convertToReadableString(option[3])}
         </label>
         {submissionStyles && isCorrect && <span>✅</span>}
         {submissionStyles && !isCorrect && <span>❌</span>}
@@ -128,6 +131,14 @@ export default function QuizPage({ quizData, setStartQuiz }) {
             %)
           </h2>
           <button onClick={playAgain}>Play again!</button>
+          {/* <div className="confetti-container">
+            <Confetti
+              width={window.innerWidth}
+              height={window.innerHeight}
+              number={800}
+              initialVelocityY={15}
+            />
+          </div> */}
         </div>
       )}
     </>
