@@ -2,19 +2,8 @@ import React, { useState } from 'react';
 
 export default function QuizPage({ quizData }) {
   const [usersAnswers, setusersAnswers] = useState({});
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState('');
 
-  function defaultform() {
-    const defaultForm = {};
-
-    for (let i = 0; i < quizData.length; i++) {
-      defaultForm[`question${i + 1}`] = '';
-    }
-    return defaultForm;
-  }
-
-  // console.log(quizData);
-  // console.log(formData);
   function handleChange(event) {
     const { name, value, checked } = event.target;
     setusersAnswers((prevValue) => {
@@ -56,6 +45,7 @@ export default function QuizPage({ quizData }) {
       <div key={item.question}>
         <h1>{convertToQuotations(item.question)}</h1>
         <input
+          required
           type="radio"
           id={option[0]}
           name={`question${index + 1}`}
@@ -100,7 +90,11 @@ export default function QuizPage({ quizData }) {
         {questions}
         <button>Check Answers</button>
       </form>
-      <h2>{score}</h2>
+      {score && (
+        <h2>
+          {score} out of {quizData.length}
+        </h2>
+      )}
     </>
   );
 }
