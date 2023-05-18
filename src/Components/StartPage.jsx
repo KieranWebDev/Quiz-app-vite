@@ -37,7 +37,7 @@ export default function StartPage({
 
   return (
     <div>
-      <h1>Quizzical</h1>
+      <h1>QuizWhiz!</h1>
       <p>Description</p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="numOfQuestions">Number of Questions</label>

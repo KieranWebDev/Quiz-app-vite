@@ -40,6 +40,7 @@ function App() {
     }
     getQuestions();
   }, [apiString]);
+
   console.log(apiString);
   function organizeQuestions(questions) {
     const newQuizData = questions.map((question) => {
