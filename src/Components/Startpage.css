@@ -1,9 +1,10 @@
 .start-page-container {
   background-color: white;
   color: var(--text);
-  padding: 1em;
+  padding: 2em;
   border-radius: 8px;
   max-width: 600px;
+  margin: 0.8em;
 }
 
 .start-page-container h1 {
@@ -12,4 +13,56 @@
   color: #db5461ff;
   text-shadow: 1px 1px 1px #171738ff;
   text-align: center;
+}
+.start-page-container h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5em;
+
+  text-align: center;
+}
+.start-page-container p {
+  margin-bottom: 0.8em;
+  font-size: 1.1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  width: 80%;
+  margin: 0 auto;
+  background-color: #ffd9ceff;
+  color: #171738ff;
+  padding: 1em;
+  border-radius: 8px;
+  margin-top: 1.5em;
+}
+form label {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+form input,
+form select {
+  padding: 0.4em;
+  border-radius: 4px;
+  border: 1px solid #171738ff;
+  font-size: 1.2rem;
+  background-color: #ffd9ceff;
+  color: #171738ff;
+}
+form input:focus,
+form select:focus {
+  outline: none;
+  border: 2px solid #db5461ff;
+}
+form button {
+  padding: 0.6em 0;
+  border-radius: 4px;
+  /* border: 1px solid #171738ff; */
+  font-size: 1.2rem;
+  background-color: #db5461ff;
+  color: white;
+  width: 100%;
+  cursor: pointer;
+  border: none;
 }

@@ -39,7 +39,15 @@ export default function StartPage({
   return (
     <div className="start-page-container">
       <h1>QuizWhiz!</h1>
-      <p>Description</p>
+      <h2>Welcome to QuizWhiz! </h2>
+      <p>
+        Choose your topic of choice and difficulty below and get ready to test
+        your knowledge!
+      </p>
+      <p>
+        <b>Warning:</b> the difficult questions may cause existential crisis and
+        feelings of complete inadequacy. Enjoy!
+      </p>
       <form onSubmit={handleSubmit}>
         <label htmlFor="numOfQuestions">Number of Questions</label>
         <input
