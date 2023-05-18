@@ -67,7 +67,7 @@ export default function StartPage({
             value={quizCriteria.category}
             onChange={handleChange}
           >
-            <option value="">Any Category</option>
+            <option value="">Random Questions</option>
             <option value="9">General Knowledge</option>
             <option value="18">Science:Computers</option>
             <option value="11">Films</option>

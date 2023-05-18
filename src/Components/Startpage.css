@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  margin-top: 2em;
 }
 .start-page-container {
   background-color: white;
@@ -16,24 +16,24 @@
 }
 
 .start-page-container h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5em;
+  font-size: 2.2rem;
+  margin-bottom: 0.3em;
   color: #db5461ff;
   text-shadow: 1px 1px 1px #171738ff;
   text-align: center;
 }
 .start-page-container h2 {
-  font-size: 2rem;
+  font-size: 1.5rem;
   margin-bottom: 0.5em;
 
   text-align: center;
 }
 .start-page-container p {
   margin-bottom: 0.8em;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
-form {
+.start-page-container form {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
@@ -46,29 +46,29 @@ form {
   margin-top: 1.5em;
   /* box-shadow: 3px 3px 3px 1px #593c8fff; */
 }
-form label {
-  font-size: 1.2rem;
+.start-page-container form label {
+  font-size: 1rem;
   font-weight: 600;
 }
-form input,
-form select {
+.start-page-container form input,
+.start-page-container form select {
   padding: 0.4em;
   border-radius: 4px;
   border: 1px solid #171738ff;
-  font-size: 1.2rem;
+  font-size: 1rem;
   background-color: #ffd9ceff;
   color: #171738ff;
 }
-form input:focus,
-form select:focus {
+.start-page-container form input:focus,
+.start-page-container form select:focus {
   outline: none;
   border: 2px solid #db5461ff;
 }
-form button {
+.start-page-container form button {
   padding: 0.6em 0;
   border-radius: 4px;
   /* border: 1px solid #171738ff; */
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: #db5461ff;
   color: white;
   width: 100%;
@@ -76,11 +76,36 @@ form button {
   border: none;
   margin-top: 0.5em;
 }
-@media (min-width: 600px) {
+@media (min-width: 770px) {
+  .position-center {
+    height: 100vh;
+    margin-top: 0;
+  }
   .start-page-container {
     padding: 2em;
   }
-  form {
+  .start-page-container h1 {
+    font-size: 3rem;
+  }
+  .start-page-container h2 {
+    font-size: 2rem;
+  }
+  .start-page-container p {
+    font-size: 1.2rem;
+  }
+  .start-page-container form {
     width: 80%;
+
+    font-size: 1.2rem;
+  }
+  .start-page-container form label {
+    font-size: 1.2rem;
+  }
+  .start-page-container form input,
+  .start-page-container form select {
+    font-size: 1.2rem;
+  }
+  .start-page-container form button {
+    font-size: 1.2rem;
   }
 }
