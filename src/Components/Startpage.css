@@ -1,10 +1,18 @@
+.position-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 .start-page-container {
   background-color: white;
   color: var(--text);
-  padding: 2em;
+  padding: 1em 2em;
   border-radius: 8px;
   max-width: 600px;
   margin: 0.8em;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
 }
 
 .start-page-container h1 {
@@ -29,13 +37,14 @@ form {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   background-color: #ffd9ceff;
   color: #171738ff;
   padding: 1em;
   border-radius: 8px;
   margin-top: 1.5em;
+  /* box-shadow: 3px 3px 3px 1px #593c8fff; */
 }
 form label {
   font-size: 1.2rem;
@@ -65,4 +74,13 @@ form button {
   width: 100%;
   cursor: pointer;
   border: none;
+  margin-top: 0.5em;
+}
+@media (min-width: 600px) {
+  .start-page-container {
+    padding: 2em;
+  }
+  form {
+    width: 80%;
+  }
 }
