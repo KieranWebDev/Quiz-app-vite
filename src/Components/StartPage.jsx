@@ -1,4 +1,5 @@
 import React from 'react';
+import './Startpage.css';
 
 export default function StartPage({
   setStartQuiz,
@@ -36,7 +37,7 @@ export default function StartPage({
   }
 
   return (
-    <div>
+    <div className="start-page-container">
       <h1>QuizWhiz!</h1>
       <p>Description</p>
       <form onSubmit={handleSubmit}>

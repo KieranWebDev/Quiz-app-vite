@@ -1,5 +1,22 @@
 html {
-  background-color: beige;
+  box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --background: #593c8fff;
+  /* --secondary-background: #eef4ed; */
+  --text: #171738ff;
+}
+
+html {
+  background-color: var(--background);
 }
 body {
   font-family: 'Roboto', sans-serif;
@@ -12,3 +29,9 @@ h5,
 h6 {
   font-family: 'Oswald', sans-serif;
 }
+
+/* --indian-red: #db5461ff;
+--pale-dogwood: #ffd9ceff;
+--rebecca-purple: #593c8fff;
+--ice-blue: #8ef9f3ff;
+--space-cadet: #171738ff; */

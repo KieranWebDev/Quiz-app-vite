@@ -1,0 +1,15 @@
+.start-page-container {
+  background-color: white;
+  color: var(--text);
+  padding: 1em;
+  border-radius: 8px;
+  max-width: 600px;
+}
+
+.start-page-container h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5em;
+  color: #db5461ff;
+  text-shadow: 1px 1px 1px #171738ff;
+  text-align: center;
+}
